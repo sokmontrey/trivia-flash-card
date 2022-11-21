@@ -1,0 +1,45 @@
+---
+var rawContent = Astro.props.rawContent();
+rawContent = rawContent.replace(/TIEBREAKERS/g, "");
+rawContent = rawContent.replace(/TEAM (A|B):/g, "")
+rawContent = rawContent.replace(/20\d\d-20\d\d (Reach For The Top)/g, "")
+rawContent = rawContent.replace(/Senior Pack #\d+(?!.)/g, "")
+rawContent = rawContent.replace(/Page \d+(?!.)/g, "")
+rawContent = rawContent.replace(/Part \d+: [\w\s]+./g, "")
+rawContent = rawContent.replace(/\d+-(.*[A-Z\s\d-]+)(?!.)/g, "")
+
+// split everything by "Q:" and "A:"
+const allList = rawContent.split(/Q:|A:|\d+\.(?!\d)|T\d+\.(?!\d)/g);
+// organize into a list of objects
+/*
+organizedList = [
+    {
+        Q: "question",
+        A: "Answer"
+    },
+    ...
+]
+*/
+const organizedList = [];
+for(let i=1; i<allList.length; i+=2){
+    organizedList.push({
+        Q: allList[i],
+        A: allList[i+1]
+    });
+}
+//TODO: scramble the list
+---
+
+<html lang='end'>
+    <head>
+        <title>{Astro.props.frontmatter.title}</title>
+    </head>
+    <body>
+        <div>
+            {organizedList.map((quiz)=>
+                <h2>{quiz.Q}</h2> 
+                <p>{quiz.A}</p>
+            )}
+        </div>
+    </body>
+</html>
