@@ -1,4 +1,6 @@
 ---
+import Deck from '../components/Deck.svelte';
+
 var rawContent = Astro.props.rawContent();
 rawContent = rawContent.replace(/TIEBREAKERS/g, "");
 rawContent = rawContent.replace(/TEAM (A|B):/g, "")
@@ -35,11 +37,6 @@ for(let i=1; i<allList.length; i+=2){
         <title>{Astro.props.frontmatter.title}</title>
     </head>
     <body>
-        <div>
-            {organizedList.map((quiz)=>
-                <h2>{quiz.Q}</h2> 
-                <p>{quiz.A}</p>
-            )}
-        </div>
+        <Deck data={organizedList} client:only="svelte" />
     </body>
 </html>
