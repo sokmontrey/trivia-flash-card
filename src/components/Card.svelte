@@ -11,7 +11,7 @@ let isShowAnswer = false;
 
 <div class='flex-column rounded-lg
 sm:py-3
-w-full md:w-8/12 lg:w-7/12 xl:w-6/12'>
+w-full md:w-11/12 lg:w-7/12 xl:w-6/12'>
     <a href='/'>
         <button class='pb-3 
         text-blue-400 underline underline-offset-8 hover:text-blue-500 transition ease-in-out delay-50'>Back</button>

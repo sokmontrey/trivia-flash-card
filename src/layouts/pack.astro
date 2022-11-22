@@ -35,6 +35,26 @@ for(let i=1; i<allList.length; i+=2){
 <html lang='en'>
     <head>
         <title>{Astro.props.frontmatter.title}</title>
+        <style>
+            html{
+                font-size:40px;
+            }
+            @media only screen and (min-width: 640px){
+                html{
+                    font-size: 38px
+                }
+            }
+            @media only screen and (min-width: 768px){
+                html{
+                    font-size: 37px
+                }
+            }
+            @media only screen and (min-width: 1024px){
+                html{
+                    font-size:16px; 
+                }
+            }
+        </style>
     </head>
     <body>
         <Deck data={organizedList} frontmatter={Astro.props.frontmatter} client:only="svelte" />
