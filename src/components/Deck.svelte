@@ -14,15 +14,16 @@
     shuffleArray(data);
 
     let questionIndex = 0;
-    const numPossibleAnswer = 6; 
-    let listOfAnswer = createListOfAnswer(data.length-1, numPossibleAnswer, questionIndex); 
+    const numPossibleChoice= 5; // <--- change here to set how many choice would show up
+
+    let listOfAnswer = createListOfAnswer(data.length-1, numPossibleChoice, questionIndex); 
     function nextQuiz(){
         if(questionIndex<data.length-1) {
             Math.random() > 0.5
                 ? questionIndex+=1 
                 : questionIndex = Math.floor(Math.random()*data.length);
         }
-        listOfAnswer= createListOfAnswer(data.length-1, numPossibleAnswer, questionIndex); 
+        listOfAnswer= createListOfAnswer(data.length-1, numPossibleChoice, questionIndex); 
     }
 
     function createListOfAnswer (range, count, correctIndex) {
