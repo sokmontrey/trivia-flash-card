@@ -1,6 +1,7 @@
 <script>
     import Card from './Card.svelte';
     export let data;
+    export let frontmatter;
 
     function shuffleArray (array){
         for (let i = array.length - 1; i > 0; i--) {
@@ -35,10 +36,13 @@
     }
 </script>
 
-<div class='flex content-center justify-center w-screen h-screen bg-sky-90 p-10
-sm:p-5'>
+<div class='flex content-center justify-center w-screen h-screen
+py-8 px-10
+'>
     <Card question={data[questionIndex].Q}
         listOfAnswer={listOfAnswer} 
         nextQuiz={nextQuiz} 
-        correctAnswer={data[questionIndex].A}/>
+        correctAnswer={data[questionIndex].A}
+        packTitle={frontmatter.title}
+        packAdder={frontmatter.addedBy}/>
 </div>

@@ -4,20 +4,25 @@ const packages = await Astro.glob('./pack/*.md');
 ---
 
 <Home>
-    <div class='sm:px-32'>
-        <h1 class='pt-10 pl-10 text-blue-500 text-xl font-serif'>TriviaCard</h1>
+    <div class='px-32'>
+        <h1 class='pt-10 text-blue-500 pb-2 border-b-2 text-3xl font-serif'>TriviaCard</h1>
 
-        <div class='grid gap-7 p-10
-        sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4
+        <div class='grid gap-3 pt-5
+        md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4
         content-center justify-center'>
             {packages.map((pack)=>
                 <a href={pack.url} class='p-0'>
-                    <button class='py-2 px-6 font-semibold rounded-lg border border-slate-300 
-                        sm:py-10 w-full
-                        bg-gray-50 
+                    <button class='px-6 font-semibold rounded-lg border border-slate-400 
+                        py-10 w-full
+                        bg-gray-50 text-left
                         transition-all ease-in-out delay-50 text-sm font-sans text-gray-800
                         hover:shadow-lg hover:shadow-blue-50 hover:border-blue-500 hover:text-blue-500'>
-                            {pack.frontmatter.title}
+                            <p class='text-lg font-bold font-sans text-stone-600'>
+                                {pack.frontmatter.title}
+                            </p>
+                            <p class='text-sm text-stone-400 font-normal'>
+                                added by: {pack.frontmatter.addedBy} 
+                            </p>
                     </button>
                 </a>
             )}
