@@ -1,7 +1,15 @@
 <script>
     import Card from './Card.svelte';
+    import HardCard from './HardCard.svelte';
+
     export let data;
     export let frontmatter;
+
+    let isEasyMode = false;
+    function onModeChange(event){
+        event.preventDefault();
+        isEasyMode = !isEasyMode;
+    }
 
     function shuffleArray (array){
         for (let i = array.length - 1; i > 0; i--) {
@@ -40,10 +48,29 @@
 <div class='flex content-center justify-center w-screen h-screen
 py-8 px-10
 '>
-    <Card question={data[questionIndex].Q}
-        listOfAnswer={listOfAnswer} 
-        nextQuiz={nextQuiz} 
-        correctAnswer={data[questionIndex].A}
-        packTitle={frontmatter.title}
-        packAdder={frontmatter.addedBy}/>
+    {#if isEasyMode}
+        <Card question={data[questionIndex].Q}
+            listOfAnswer={listOfAnswer} 
+            nextQuiz={nextQuiz} 
+            correctAnswer={data[questionIndex].A}
+            packTitle={frontmatter.title}
+            packAdder={frontmatter.addedBy}/>
+    {:else}
+        <HardCard question={data[questionIndex].Q}
+            listOfAnswer={listOfAnswer} 
+            goToNextQuiz={nextQuiz} 
+            correctAnswer={data[questionIndex].A}
+            packTitle={frontmatter.title}
+            packAdder={frontmatter.addedBy}/>
+    {/if}
+
+    <form class='fixed bottom-0 right-0 p-5 px-10 flex content-center justify-center'>
+        <p class='font-mono text-gray-400'>Easy Mode:</p>
+        <button 
+        class={`rounded-xl w-7 h-7 border-2 ml-2 
+        transition ease-in-out delay-100 
+        hover:bg-gray-300 hover:border-0
+        ${isEasyMode?'bg-blue-500':'bg-white'}`}
+        on:click={onModeChange}></button>
+    </form>
 </div>
