@@ -30,6 +30,8 @@
             Math.random() > 0.7
                 ? questionIndex+=1 
                 : questionIndex = Math.floor(Math.random()*data.length);
+        }else{
+            questionIndex = Math.floor(Math.random()*data.length);
         }
         listOfAnswer= createListOfAnswer(data.length-1, numPossibleChoice, questionIndex); 
     }
