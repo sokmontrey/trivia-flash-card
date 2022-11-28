@@ -27,7 +27,7 @@
     let listOfAnswer = createListOfAnswer(data.length-1, numPossibleChoice, questionIndex); 
     function nextQuiz(){
         if(questionIndex<data.length-1) {
-            Math.random() > 0.5
+            Math.random() > 0.7
                 ? questionIndex+=1 
                 : questionIndex = Math.floor(Math.random()*data.length);
         }
