@@ -3,7 +3,7 @@ import Deck from '../components/Deck.svelte';
 
 var rawContent = Astro.props.rawContent();
 rawContent = rawContent.replace(/TIEBREAKERS/g, "");
-rawContent = rawContent.replace(/TEAM (A|B):/g, "")
+rawContent = rawContent.replace(/TEAM (A|B):/g, "");
 rawContent = rawContent.replace(/20\d\d-20\d\d (Reach For The Top)/g, "")
 rawContent = rawContent.replace(/Senior Pack #\d+(?!.)/g, "")
 rawContent = rawContent.replace(/Page \d+(?!.)/g, "")
@@ -11,7 +11,7 @@ rawContent = rawContent.replace(/Part \d+: [\w\s]+./g, "")
 rawContent = rawContent.replace(/\d+-(.*[A-Z\s\d-]+)(?!.)/g, "")
 
 // split everything by "Q:" and "A:"
-const allList = rawContent.split(/Q:|A:|\d+\.(?!\d)|T\d+\.(?!\d)/g);
+const allList = rawContent.split(/Q:|A:|A\.|Q\.|\d+\.(?!\d)|T\d+\.(?!\d)/g);
 // organize into a list of objects
 /*
 organizedList = [
@@ -74,8 +74,10 @@ result.sort((a, b) => b['count'] - a['count']);
         </style>
     </head>
     <body>
+        <!-- 
         <Deck data={organizedList} frontmatter={Astro.props.frontmatter} client:only="svelte" />
-        <!--{organizedList.map((a)=><h1 class='text-2xl font-serif text-blue-500'>{a.Q}</h1><p>{a.A}</p><br/>)}-->
+        -->
+        {organizedList.map((a)=><h1 class='text-2xl font-serif text-blue-500'>{a.Q}</h1><p>{a.A}</p><br/>)}
         <!-- 
         {result.map(a=><p>{a.word} : {a.count}</p>)}
         -->
